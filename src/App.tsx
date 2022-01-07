@@ -1,5 +1,15 @@
+// https://sujeitoprogramador.com/r-api/?api=filmes
+
+import Router from "./routes/routes";
+import GlobalStyle from "./styles/global";
+
 function App() {
-  return <h1>Olá</h1>;
+  return (
+    <>
+      <Router />
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;
