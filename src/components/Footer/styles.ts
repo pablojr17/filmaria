@@ -7,8 +7,6 @@ export const Container = styled.header`
   width: 100%;
   height: 4rem;
   background: #3f3572;
-  position: sticky;
-  top: 0;
 
   .logo {
     text-decoration: none;
