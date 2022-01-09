@@ -6,7 +6,6 @@ import {
   ListMovies,
   Movie,
   MovieTitle,
-  MovieSinopse,
   MovieImage,
   LinkMovie,
 } from "./styles";
@@ -38,7 +37,6 @@ export function Home() {
               <MovieTitle>{filme.nome}</MovieTitle>
               <MovieImage src={filme.foto} alt={filme.nome} loading="lazy" />
               <LinkMovie to={`/filme/${filme.id}`}>Acessar</LinkMovie>
-              <MovieSinopse>{filme.sinopse}</MovieSinopse>
             </Movie>
           ))}
         </ListMovies>

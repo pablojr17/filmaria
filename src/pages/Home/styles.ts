@@ -6,9 +6,12 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 800px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 export const ListMovies = styled.div``;
@@ -20,7 +23,6 @@ export const Movie = styled.div`
   justify-content: center;
   background-color: #fff;
   border-radius: 5px;
-  padding: 0 2.4rem;
   margin-top: 1.6rem;
 
   :last-child {
