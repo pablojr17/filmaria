@@ -40,14 +40,16 @@ export const DetailsNotFound = styled.div`
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 `;
 
 export const LinkHome = styled(Link)`
   text-decoration: none;
-  color: #3f3572;
+  background-color: #3f3572;
+  color: #fff;
   font-weight: bold;
+  padding: 0.8rem;
 
   :hover {
     opacity: 0.8;

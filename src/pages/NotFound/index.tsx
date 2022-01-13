@@ -6,7 +6,7 @@ export function NotFound() {
       <DetailsNotFound>
         <h1>404</h1>
         <h2>Página não encontrada</h2>
-        <LinkHome to="/">Voltar para a home</LinkHome>
+        <LinkHome to="/">Veja todos os filmes!</LinkHome>
       </DetailsNotFound>
     </Container>
   );
