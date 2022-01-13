@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Loading } from "../../components/Loading";
 import { FilmesProps } from "../../interfaces";
 import api from "../../services/api";
 
@@ -22,7 +23,6 @@ export function Movies() {
     async function loadFilme() {
       const { data } = await api.get<FilmesProps>(`r-api/?api=filmes/${id}`);
 
-      // tentou acessar uma ID que não existe
       if (data.length === 0) {
         navigate("/", { replace: true });
       }
@@ -51,9 +51,8 @@ export function Movies() {
   }
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <Loading />;
   }
-
   return (
     <Container>
       <MovieTitle>{filme.nome}</MovieTitle>

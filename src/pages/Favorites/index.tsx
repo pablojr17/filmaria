@@ -10,15 +10,18 @@ import {
   DetailsMovie,
   LinkMovie,
 } from "./styles";
+import { Loading } from "../../components/Loading";
 
 export function Favovite() {
   const [filmes, setFilmes] = useState<FilmesProps[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     function saveMovie() {
       const myList = localStorage.getItem("filmes");
       let filmesSalvos = JSON.parse(myList || "[]");
       setFilmes(filmesSalvos);
+      setLoading(false);
     }
     saveMovie();
   }, []);
@@ -29,6 +32,10 @@ export function Favovite() {
     setFilmes(newList);
 
     toast.success("Filme removido com sucesso!");
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (

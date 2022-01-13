@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Favovite } from "../pages/Favorites";
 import { Home } from "../pages/Home";
 import { Movies } from "../pages/Movies";
+import { NotFound } from "../pages/NotFound";
 
 const Router = () => (
   <BrowserRouter>
@@ -13,9 +13,8 @@ const Router = () => (
       <Route path="/filme/:id" element={<Movies />} />
       <Route path="/favoritos" element={<Favovite />} />
 
-      <Route path="/*" element={<div>404</div>} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
-    {/* <Footer /> */}
   </BrowserRouter>
 );
 
