@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FilmesProps } from "../../interfaces";
 import api from "../../services/api";
 
 import {
@@ -10,16 +11,8 @@ import {
   MovieSinopse,
 } from "./styles";
 
-interface FilmeProps {
-  length: number;
-  id: number;
-  nome: string;
-  sinopse: string;
-  foto: string;
-}
-
 export function Movies() {
-  const [filme, setFilme] = useState<FilmeProps>({} as FilmeProps);
+  const [filme, setFilme] = useState<FilmesProps>({} as FilmesProps);
   const [loading, setLoading] = useState(true);
   const [assistir, setAssistir] = useState(false);
   const { id } = useParams();
@@ -27,7 +20,7 @@ export function Movies() {
 
   useEffect(() => {
     async function loadFilme() {
-      const { data } = await api.get<FilmeProps>(`r-api/?api=filmes/${id}`);
+      const { data } = await api.get<FilmesProps>(`r-api/?api=filmes/${id}`);
 
       // tentou acessar uma ID que não existe
       if (data.length === 0) {
@@ -38,6 +31,24 @@ export function Movies() {
     }
     loadFilme();
   }, [id, navigate]);
+
+  function saveMovie() {
+    const myList = localStorage.getItem("filmes");
+    let filmesSalvos = JSON.parse(myList || "[]");
+
+    const hasMovie = filmesSalvos.some(
+      (filme: FilmesProps) => filme.id === Number(id)
+    );
+
+    if (hasMovie) {
+      alert("Filme já está na sua lista!");
+      return;
+    }
+
+    filmesSalvos.push(filme);
+    localStorage.setItem("filmes", JSON.stringify(filmesSalvos));
+    alert("Filme adicionado com sucesso!");
+  }
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -61,7 +72,7 @@ export function Movies() {
       <MovieSinopse>{filme.sinopse}</MovieSinopse>
 
       <ContentBtn>
-        <button>Salvar</button>
+        <button onClick={saveMovie}>Salvar</button>
         <button>
           <a
             rel="noopener noreferrer"

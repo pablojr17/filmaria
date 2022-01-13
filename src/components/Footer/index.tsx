@@ -7,7 +7,7 @@ export default function Footer() {
       <Link className="logo" to="/">
         Filmaria
       </Link>
-      <Link className="favoritos" to="/">
+      <Link className="favoritos" to="/favoritos">
         Salvos
       </Link>
     </Container>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { FilmesProps } from "../../interfaces";
-import api from "../../services/api";
 
 import {
   Container,
@@ -11,15 +10,16 @@ import {
   LinkMovie,
 } from "./styles";
 
-export function Home() {
+export function Favovite() {
   const [filmes, setFilmes] = useState<FilmesProps[]>([]);
 
   useEffect(() => {
-    async function loadFilmes() {
-      const { data } = await api.get<FilmesProps[]>(`r-api/?api=filmes`);
-      setFilmes(data);
+    function saveMovie() {
+      const myList = localStorage.getItem("filmes");
+      let filmesSalvos = JSON.parse(myList || "[]");
+      setFilmes(filmesSalvos);
     }
-    loadFilmes();
+    saveMovie();
   }, []);
 
   return (
