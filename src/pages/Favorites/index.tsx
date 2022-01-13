@@ -6,7 +6,7 @@ import {
   ListMovies,
   Movie,
   MovieTitle,
-  MovieImage,
+  DetailsMovie,
   LinkMovie,
 } from "./styles";
 
@@ -22,18 +22,30 @@ export function Favovite() {
     saveMovie();
   }, []);
 
+  function handleDelete(id: number) {
+    const newList = filmes.filter((item) => item.id !== id);
+    localStorage.setItem("filmes", JSON.stringify(newList));
+    setFilmes(newList);
+  }
+
   return (
     <Container>
-      {filmes.length > 0 && (
+      <h1>Meus filmes</h1>
+      {filmes.length !== 0 ? (
         <ListMovies>
           {filmes.map((filme: FilmesProps) => (
             <Movie key={filme.id}>
               <MovieTitle>{filme.nome}</MovieTitle>
-              <MovieImage src={filme.foto} alt={filme.nome} loading="lazy" />
-              <LinkMovie to={`/filme/${filme.id}`}>Acessar</LinkMovie>
+
+              <DetailsMovie>
+                <LinkMovie to={`/filme/${filme.id}`}>Acessar</LinkMovie>
+                <button onClick={() => handleDelete(filme.id)}>Excluir</button>
+              </DetailsMovie>
             </Movie>
           ))}
         </ListMovies>
+      ) : (
+        <h3>Nenhum filme salvo :(</h3>
       )}
     </Container>
   );

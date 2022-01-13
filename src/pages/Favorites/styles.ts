@@ -3,69 +3,83 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  max-width: 900px;
-  border-radius: 8px;
+
+  h1 {
+    padding: 2rem 0;
+
+    @media (max-width: 600px) {
+      padding: 0.5rem 0;
+    }
+  }
 
   @media (max-width: 600px) {
     padding: 20px;
   }
 `;
 
-export const ListMovies = styled.div``;
-
-export const Movie = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border-radius: 5px;
-  margin-top: 1.6rem;
-
-  :last-child {
-    margin-bottom: 2rem;
-  }
-`;
-
-export const MovieTitle = styled.strong`
-  padding-bottom: 1rem;
-  font-size: 1.2rem;
-`;
-
-export const MovieSinopse = styled.p`
-  font-size: 1rem;
-  color: #191919;
-  margin-top: 0.5rem;
-  text-align: justify;
+export const ListMovies = styled.ul`
+  padding: 0;
+  width: 600px;
 
   @media (max-width: 600px) {
-    font-size: 0.8rem;
+    width: 100%;
   }
 `;
 
-export const MovieImage = styled.img`
+export const Movie = styled.li`
+  border: 1px solid #3f3572;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  list-style: none;
   width: 100%;
-  max-height: 350px;
-  border-radius: 5px 5px 0 0;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 
-  @media (max-width: 800px) {
-    max-height: 200px;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+`;
+
+export const MovieTitle = styled.span`
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const DetailsMovie = styled.div`
+  button {
+    margin-left: 10px;
+    background-color: #3f3572;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #fff;
+      color: #3f3572;
+      border: 1px solid #3f3572;
+    }
   }
 `;
 
 export const LinkMovie = styled(Link)`
   text-decoration: none;
-  color: #fff;
-  background-color: #3f3572;
-  font-size: 1.5rem;
-  width: 100%;
-  text-align: center;
-  padding: 0.8rem 0;
-  border-radius: 0 0 5px 5px;
+  color: #3f3572;
+  font-weight: bold;
 
   :hover {
     opacity: 0.8;
