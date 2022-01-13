@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FilmesProps } from "../../interfaces";
+import { toast } from "react-toastify";
 
 import {
   Container,
@@ -26,6 +27,8 @@ export function Favovite() {
     const newList = filmes.filter((item) => item.id !== id);
     localStorage.setItem("filmes", JSON.stringify(newList));
     setFilmes(newList);
+
+    toast.success("Filme removido com sucesso!");
   }
 
   return (

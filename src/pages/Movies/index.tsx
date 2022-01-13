@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FilmesProps } from "../../interfaces";
 import api from "../../services/api";
 
@@ -14,7 +15,6 @@ import {
 export function Movies() {
   const [filme, setFilme] = useState<FilmesProps>({} as FilmesProps);
   const [loading, setLoading] = useState(true);
-  const [assistir, setAssistir] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -41,13 +41,13 @@ export function Movies() {
     );
 
     if (hasMovie) {
-      alert("Filme já está na sua lista!");
+      toast.info("Este filme já está na sua lista!");
       return;
     }
 
     filmesSalvos.push(filme);
     localStorage.setItem("filmes", JSON.stringify(filmesSalvos));
-    alert("Filme adicionado com sucesso!");
+    toast.success("Filme salvo com sucesso!");
   }
 
   if (loading) {
@@ -57,17 +57,7 @@ export function Movies() {
   return (
     <Container>
       <MovieTitle>{filme.nome}</MovieTitle>
-      {!assistir ? (
-        <MovieImage src={filme.foto} alt={filme.nome} loading="lazy" />
-      ) : (
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/EQxCycVTfcU?controls=0&amp;start=1autoplay=1&loop=1&autopause=0"
-          title="YouTube video player"
-          allow="autoplay"
-        ></iframe>
-      )}
+      <MovieImage src={filme.foto} alt={filme.nome} loading="lazy" />
 
       <MovieSinopse>{filme.sinopse}</MovieSinopse>
 
@@ -81,9 +71,6 @@ export function Movies() {
           >
             Trailer
           </a>
-        </button>
-        <button onClick={() => setAssistir(!assistir)}>
-          {assistir ? "Voltar" : "Assistir"}
         </button>
       </ContentBtn>
     </Container>

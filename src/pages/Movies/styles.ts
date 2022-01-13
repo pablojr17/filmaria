@@ -22,7 +22,7 @@ export const MovieTitle = styled.strong`
 `;
 
 export const MovieSinopse = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #191919;
   margin-top: 0.5rem;
   text-align: justify;
@@ -34,9 +34,9 @@ export const MovieSinopse = styled.p`
 
 export const MovieImage = styled.img`
   width: 100%;
-  max-height: 350px;
+  max-height: 300px;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit: initial;
 
   @media (max-width: 800px) {
     border-radius: 0px;
